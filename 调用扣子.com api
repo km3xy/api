@@ -1,0 +1,73 @@
+在coze.com
+
+创建个人的   机器人
+也可以创建图队     机器人
+
+这里   创建的是个人的  机器人
+
+创建并发布机器人，发布时不要忘记
+
+勾选上 “Bot as API”，发布成功后，
+
+用密钥令牌和你发布成功的机器人的bot  id
+
+创建密钥令牌时选择时间    选长久的
+
+选择     机器人   选个人的
+
+团队空间   选个人的
+
+选全部,  后，空间下 所有机器人可用
+
+用python 调用
+
+或用php   调用
+
+发布机器人时，不要忘记，勾选上 “Bot as API” ，然后再点击右上角的 '发布'。
+
+只有勾选上 “Bot as API” 
+
+并且发布成功后   ,
+
+
+
+以下是
+python调用实例
+
+
+
+
+import requests
+
+# 替换为你自己的 Bot ID 和 API Token
+bot_id = "YOUR_BOT_ID"
+api_token = "YOUR_API_TOKEN"
+url = "https://api.coze.com/open_api/v2/chat"
+
+headers = {
+    "authorization": f"Bearer {api_token}",
+    "content-type": "application/json",
+    "accept": "*/*",
+    "host": "api.coze.com",
+    "connection": "keep-alive"
+}
+
+data = {
+    "conversation_id": "123",  # 这里的 conversation_id 可以根据你的需求自定义
+    "bot_id": bot_id,
+    "user": "123333333",  # 用户标识，可自定义
+    "query": "你的问题",
+    "stream": False  # 根据实际需求设置是否流式传输
+}
+
+response = requests.post(url, headers=headers, json=data)
+
+if response.status_code == 200:
+    result = response.json()
+    print(result)
+else:
+    print(f"请求失败，状态码：{response.status_code}，错误信息：{response.text}")
+
+
+
+
